@@ -1,0 +1,14 @@
+.menu_list {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+.menu_list_link {
+    text-decoration: none;
+}
+
+.menu_list_el {
+    float: left;
+    margin-right: 5px;
+}
