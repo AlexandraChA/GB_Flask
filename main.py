@@ -1,6 +1,19 @@
 from flask import Flask, render_template, url_for, request, make_response
+from db_sqllite import db, User
+import os
+import hashlib
 
 app = Flask(__name__, template_folder='templates')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'
+SECRET_KEY = os.urandom(32)
+app.config['SECRET_KEY'] = SECRET_KEY
+db.init_app(app)
+
+@app.cli.command("init-db")
+def init_db():
+    db.create_all()
+    print('OK')
+
 
 @app.get("/mainpage")
 def index():
@@ -37,7 +50,28 @@ def shoes():
 
 @app.route("/login")
 def login():
-    return render_template('index_login.html', title="Страница Входа", header = "Страница входа", Subtitle = "Вход в аккаунт")
+    return render_template('index_login.html')
+
+@app.route("/signup")
+def sign_up():
+    return render_template('index_signup.html')
+
+@app.post("/mainpage")
+def add_user():
+    if request.method == 'POST':
+        f_name = request.form.get('usr_name')
+        f_surname = request.form.get('usr_surname')
+        f_email = request.form.get('usr_email')
+        f_password = request.form.get('usr_password')
+        f_hashed_password = hashlib.md5(f_password.encode()).hexdigest()
+    user = User(username=f_name, usersurname=f_surname, email = f_email, password = f_hashed_password)
+    db.session.add(user)
+    db.session.commit()
+    print(f"User {f_name} {f_surname} added in DB.")
+    if f_name == None:
+            f_name = "Пользователь"
+
+    return render_template('index.html', title="Главная страница", header="Главная страница", user_name = f_name)
 
 
 if __name__=="__main__":

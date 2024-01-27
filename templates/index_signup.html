@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+</head>
+
+<body>
+    <h1>Страница Регистрации</h1>
+    <div class="signup_block">
+        <div class="content">
+            <div class="signup_form">
+                <form action="{{ url_for('add_user') }}" method="post" enctype="multipart/form-data">
+                    <input type="text" name="usr_name" required /> <i>Имя</i>
+                    <br>
+                    <input type="text" name="usr_surname" required /> <i>Фамилия</i>
+                    <br>
+                    <input type="email" name="usr_email" required /> <i>Почта</i>
+                    <br>
+                    <input type="password" name="usr_password" required /> <i>Пароль</i>
+                    <input type="submit" value="Зарегистрироваться" />
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
