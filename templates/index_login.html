@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница Входа</title>
+</head>
+
+<body>
+    <h1>Страница Входа</h1>
+    <div class="login_block">
+        <div class="content">
+            <div class="login_form">
+                <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+                    <input type="text" name="usr_name" required /> <i>Имя</i>
+                    <br>
+                    <input type="text" name="usr_email" required /> <i>Почта</i>
+                    <input type="submit" value="Войти" />
+                </form>
+                <div class="links"> <a href="#">Забыли почту?</a> <a href="#">Зарегистрироваться</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

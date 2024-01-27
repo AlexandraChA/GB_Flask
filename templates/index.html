@@ -21,6 +21,12 @@
             <li class="menu_list_el"><a class="menu_list_link" href="#">Контакты</a></li>
         </ul>
     </div>
+    <div class="logout_block">
+        <a href="{{ url_for('login') }}">Выйти</a>
+    </div>
+    <div class="hi_block">
+        <p>Приветствуем, {{ user_name }}!</p>
+    </div>
     <div class="content">{% block content %}{% endblock %}</div>
     <br>
     <div class="footer">
